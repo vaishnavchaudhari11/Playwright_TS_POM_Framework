@@ -9,14 +9,14 @@ export class LoginPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.usernameInput = page.getByTestId('username');
-    this.passwordInput = page.getByTestId('password');
-    this.loginButton = page.getByTestId('login-button');
-    this.errorMessage = page.getByTestId('error');
+    this.usernameInput = page.locator('input[type="email"]');
+    this.passwordInput = page.locator('input[type="password"]');
+    this.loginButton = page.getByRole('button', { name: 'Login' });
+    this.errorMessage = page.getByText(/invalid|incorrect|email|password/i);
   }
 
   async goto(): Promise<void> {
-    await this.page.goto('/');
+    await this.page.goto('https://rahulshettyacademy.com/client/#/auth/login');
   }
 
   async login(username: string, password: string): Promise<void> {
@@ -26,7 +26,8 @@ export class LoginPage {
   }
 
   async expectLoaded(): Promise<void> {
-    await expect(this.loginButton).toBeVisible();
+    await expect(this.usernameInput).toBeVisible();
+    await expect(this.passwordInput).toBeVisible();
   }
 
   async expectError(message: string): Promise<void> {

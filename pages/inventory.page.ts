@@ -8,19 +8,19 @@ export class InventoryPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.title = page.getByTestId('title');
-    this.inventoryItems = page.getByTestId('inventory-item');
-    this.cartLink = page.getByTestId('shopping-cart-link');
+    this.title = page.getByText('Showing 8 results');
+    this.inventoryItems = page.getByRole('button', { name: /add to cart/i });
+    this.cartLink = page.getByRole('button', { name: /cart/i });
   }
 
   async expectLoaded(): Promise<void> {
-    await expect(this.page).toHaveURL(/inventory\.html/);
-    await expect(this.title).toHaveText('Products');
+    await expect(this.page).toHaveURL(/dashboard\/dash/);
+    await expect(this.title).toBeVisible();
   }
 
   async addProduct(productName: string): Promise<void> {
-    const product = this.page.getByTestId('inventory-item').filter({ hasText: productName });
-    await product.getByRole('button', { name: /add to cart/i }).click();
+    const product = this.page.getByRole('button', { name: /add to cart/i }).filter({ hasText: productName });
+    await product.click();
   }
 
   async expectProductCount(count: number): Promise<void> {

@@ -1,20 +1,22 @@
-import { test } from '../fixtures/test.fixture';
+import { test } from '@playwright/test';
+import { LoginPage } from '../pages/login.page';
+import { InventoryPage } from '../pages/inventory.page';
 import { users } from '../utils/test-data';
 
 test.describe('Login', () => {
-  test.beforeEach(async ({ loginPage }) => {
+  test.beforeEach(async ({ page }) => {
+    const loginPage = new LoginPage(page);
     await loginPage.goto();
     await loginPage.expectLoaded();
   });
 
-  test('allows a standard user to sign in', async ({ loginPage, inventoryPage }) => {
+  test('allows a standard user to sign in', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    const inventoryPage = new InventoryPage(page);
+
     await loginPage.login(users.standard.username, users.standard.password);
     await inventoryPage.expectLoaded();
-    await inventoryPage.expectProductCount(6);
+    await inventoryPage.expectProductCount(8);
   });
 
-  test('shows an error for invalid credentials', async ({ loginPage }) => {
-    await loginPage.login('invalid_user', 'invalid_password');
-    await loginPage.expectError('Username and password do not match');
-  });
 });

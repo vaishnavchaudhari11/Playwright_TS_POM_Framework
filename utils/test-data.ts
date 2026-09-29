@@ -1,6 +1,6 @@
 export const users = {
   standard: {
-    username: process.env.STANDARD_USER ?? 'standard_user',
-    password: process.env.STANDARD_PASSWORD ?? 'secret_sauce',
+    username: process.env.STANDARD_USER ?? 'vaishnav@gmail.com',
+    password: process.env.STANDARD_PASSWORD ?? 'India@11',
   },
 } as const;
