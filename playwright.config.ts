@@ -8,27 +8,36 @@ export default defineConfig({
   testDir: './tests',
   outputDir: './test-results',
   fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
-  reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : [['list'], ['html']],
+  forbidOnly: false,
+  retries: 0,
+  reporter: [['list'], ['html']],
   timeout: 30_000,
   expect: {
     timeout: 5_000,
   },
   use: {
-    headless: true,
+    headless: false, 
+    viewport: null, // Global viewport override
     actionTimeout: 10_000,
     navigationTimeout: 30_000,
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     trace: 'retain-on-failure',
     testIdAttribute: 'data-test',
+    launchOptions: {
+      args: ['--start-maximized'], // Tells Chromium to open maximized
+    },
   },
+
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        ...devices['Desktop Chrome'],
+        viewport: null,            // 1. Removes the default 1280x720 window constraint
+        deviceScaleFactor: undefined, // 2. Fixes your error by removing device scale emulation
+        hasTouch: undefined,       // 3. Clean fallback to native desktop interactions
+      },
     },
   ],
 });
