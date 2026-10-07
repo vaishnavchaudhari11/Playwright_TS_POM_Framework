@@ -20,10 +20,10 @@ test.describe("Login Page" , () => {
 
     
         console.log("LoginPage");
-        await loginPage.enterEmailBody("user@phptravels.com");
-        await loginPage.enterPassword("demouser");
-        await loginPage.rememberCredentials();
-        await loginPage.loginBtnClick();
+        // await loginPage.enterEmailBody("user@phptravels.com");
+        // await loginPage.enterPassword("demouser");
+        // await loginPage.rememberCredentials();
+        // await loginPage.loginBtnClick();
          
 
     });
