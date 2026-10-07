@@ -26,7 +26,7 @@ export default defineConfig({
   },
 
   use: {
-    headless: true,
+    headless: false,
 
     viewport: null,
 
@@ -34,11 +34,11 @@ export default defineConfig({
 
     navigationTimeout: 30_000,
 
-    screenshot: 'only-on-failure',
+    screenshot: 'on',
 
     video: 'retain-on-failure',
 
-    trace: 'retain-on-failure',
+    trace: 'on',
 
     testIdAttribute: 'data-test',
 
