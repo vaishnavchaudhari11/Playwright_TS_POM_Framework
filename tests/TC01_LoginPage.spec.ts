@@ -20,10 +20,11 @@ test.describe("Login Page" , () => {
 
     
         console.log("LoginPage");
-        // await loginPage.enterEmailBody("user@phptravels.com");
-        // await loginPage.enterPassword("demouser");
-        // await loginPage.rememberCredentials();
-        // await loginPage.loginBtnClick();
+        await loginPage.enterUserName("Admin");
+        await loginPage.enterPassword("admin123");
+        await loginPage.loginBtnClick();
+
+        
          
 
     });
