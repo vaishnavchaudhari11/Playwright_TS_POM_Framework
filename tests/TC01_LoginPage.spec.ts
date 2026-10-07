@@ -16,7 +16,7 @@ test.describe("Login Page" , () => {
 
     });
 
-    test("LoginPage to Page" , async ({page}) => {
+    test("LoginPage to Page @smoke" , async ({page}) => {
 
     
         console.log("LoginPage");
@@ -24,7 +24,7 @@ test.describe("Login Page" , () => {
         await loginPage.enterPassword("demouser");
         await loginPage.rememberCredentials();
         await loginPage.loginBtnClick();
-        
+         
 
     });
 
