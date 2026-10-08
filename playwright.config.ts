@@ -30,6 +30,8 @@ export default defineConfig({
 
     viewport: null,
 
+    locale: 'en-US',
+
     actionTimeout: 10_000,
 
     navigationTimeout: 30_000,
@@ -52,7 +54,7 @@ export default defineConfig({
       name: 'chromium',
 
       use: {
-        ...devices['Desktop Chrome'],
+        ...devices['Desktop Edge'],
         viewport: null,
         deviceScaleFactor: undefined,
         hasTouch: undefined
