@@ -60,6 +60,15 @@ export class Loginpage{
         await this.page.waitForLoadState('domcontentloaded');
     };
 
+    async titlevalidate() : Promise<void> {
+
+        const pageTitle = await this.page.title();
+
+        await expect(pageTitle).toBe("OrangeHRM");
+    }
+
+    
+
 
 
 
